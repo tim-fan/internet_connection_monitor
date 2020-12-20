@@ -106,6 +106,8 @@ def main(selected_ssids, sample_interval, no_header, args=None):
     while True:
 
         # wait for the next logging iteration
+        restore_initial_connection(
+        )  # leave initial connection active while waiting
         time.sleep(max(next_log_time - time.time(), 0))
         next_log_time += sample_interval * 60
 
@@ -120,8 +122,11 @@ def main(selected_ssids, sample_interval, no_header, args=None):
 
             connected = wait_for_connection(wireless_dev)
 
-            # now test internet (by pinging google)
-            ping_successful = ping("www.google.com")
+            if connected:
+                # now test internet (by pinging google)
+                ping_successful = ping("www.google.com")
+            else:
+                ping_successful = False
 
             # write out result
             print(
