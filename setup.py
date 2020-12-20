@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 """The setup script."""
 
 from setuptools import setup, find_packages
@@ -10,11 +9,19 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=7.0', ]
+requirements = [
+    'Click>=7.0',
+    'python-networkmanager',
+    'ping3',
+]
 
-setup_requirements = ['pytest-runner', ]
+setup_requirements = [
+    'pytest-runner',
+]
 
-test_requirements = ['pytest>=3', ]
+test_requirements = [
+    'pytest>=3',
+]
 
 setup(
     author="Tim Fanselow",
@@ -31,7 +38,8 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
-    description="Util for logging internet connection status for given WiFi network SSIDs",
+    description=
+    "Util for logging internet connection status for given WiFi network SSIDs",
     entry_points={
         'console_scripts': [
             'internet_connection_monitor=internet_connection_monitor.cli:main',
@@ -43,7 +51,9 @@ setup(
     include_package_data=True,
     keywords='internet_connection_monitor',
     name='internet_connection_monitor',
-    packages=find_packages(include=['internet_connection_monitor', 'internet_connection_monitor.*']),
+    packages=find_packages(include=[
+        'internet_connection_monitor', 'internet_connection_monitor.*'
+    ]),
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
