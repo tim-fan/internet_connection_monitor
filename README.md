@@ -9,20 +9,18 @@ Uses NetworkManager to connect between given SSIDs.
 
 ## Usage
 ```
-$ internet_connection_monitor  -h
+$ internet_connection_monitor -h
 Usage: internet_connection_monitor [OPTIONS] ssid
 
-Repeatedly check internet connection status
-(connected or disconnected) for given WiFi SSIDs.
-Output is writen as .csv to stdout.
+  Repeatedly check internet connection status (connected or disconnected)
+  for given WiFi SSIDs. Output is writen as .csv to stdout.
 
 Options:
--s, --sample-interval MINUTES  Duration (in minutes)
-                                between connectivity
-                                checks. Default=15.
+  -s, --sample-interval MINUTES  Duration (in minutes) between connectivity
+                                 checks. Default=15.
 
--h, --help                     Show this message and
-                                exit.
+  --no-header                    Disable printing of csv header row
+  -h, --help                     Show this message and exit.
 ```
 
 ## Example Output

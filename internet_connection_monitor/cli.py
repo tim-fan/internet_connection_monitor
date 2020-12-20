@@ -50,7 +50,10 @@ def wait_for_connection(device: NetworkManager.Device) -> bool:
     metavar="MINUTES",
     type=float,
     help="Duration (in minutes) between connectivity checks. Default=15.")
-def main(selected_ssids, sample_interval, args=None):
+@click.option('--no-header',
+              is_flag=True,
+              help="Disable printing of csv header row")
+def main(selected_ssids, sample_interval, no_header, args=None):
     """
     Repeatedly check internet connection status (connected or disconnected) for given WiFi SSIDs.
     Output is writen as .csv to stdout.
@@ -95,7 +98,8 @@ def main(selected_ssids, sample_interval, args=None):
     atexit.register(restore_initial_connection)
 
     # write the csv header
-    print("timestamp,ssid,device_connected,ping_successful")
+    if not no_header:
+        print("timestamp,ssid,device_connected,ping_successful", flush=True)
 
     # begin logging loop.
     next_log_time = time.time()
@@ -121,8 +125,8 @@ def main(selected_ssids, sample_interval, args=None):
 
             # write out result
             print(
-                f"{time.time()},{ssid},{int(connected)},{int(ping_successful)}"
-            )
+                f"{time.time()},{ssid},{int(connected)},{int(ping_successful)}",
+                flush=True)
 
     return 0
 
