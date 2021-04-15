@@ -89,11 +89,12 @@ def main(selected_ssids, sample_interval, no_header, args=None):
     wireless_dev = wireless_devs[0]
 
     # save the current active connection, to restore once this script exits
-    initial_connection = wireless_dev.ActiveConnection.Connection
+    initial_connection = wireless_dev.ActiveConnection.Connection if wireless_dev.ActiveConnection else None
 
     def restore_initial_connection():
-        NetworkManager.NetworkManager.ActivateConnection(
-            initial_connection, wireless_dev, "/")
+        if initial_connection:
+            NetworkManager.NetworkManager.ActivateConnection(
+                initial_connection, wireless_dev, "/")
 
     atexit.register(restore_initial_connection)
 
