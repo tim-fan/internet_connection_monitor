@@ -43,6 +43,7 @@ setup(
     entry_points={
         'console_scripts': [
             'internet_connection_monitor=internet_connection_monitor.cli:main',
+            'clean_csv=internet_connection_monitor.clean_csv:main',
         ],
     },
     install_requires=requirements,
