@@ -14,7 +14,7 @@ def ping(host: str) -> bool:
     """
     ping host once, return True if successful
     """
-    rc = subprocess.run(["ping", "-c", "1", host],
+    rc = subprocess.run(["ping", "-4", "-c", "1", host],
                         stdout=subprocess.DEVNULL,
                         stderr=subprocess.DEVNULL).returncode
     return rc == 0
